@@ -17,8 +17,9 @@ import main.Globals;
 
 public class MainMenu extends Aspect {
     
-    private final ArrayList<graphics.util.Button> buttons;
+    public final ArrayList<graphics.util.Button> buttons;
     private final Font font;
+    private double angle;
     
     public MainMenu(ArrayList<SubAspect> subAspects, ArrayList<graphics.util.Button> buttons) {
         super(subAspects);/*
@@ -30,12 +31,15 @@ public class MainMenu extends Aspect {
         catch(IOException e){System.out.println("Error: Could ");}*/
         this.buttons = buttons;
         font = new Font("Monospaced", Font.BOLD, 74);
+        angle = 0;
     }
     
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        bulletballsimulator.Globals.menuBG.draw(g);
+        g.setColor(Color.black);
+        g.fillRect(0, 0, 1000, 650);
+        bulletballsimulator.Globals.menuBG.drawAtAngle(g, angle);
         for(Button b: buttons){
             b.draw(g);
         }
@@ -46,6 +50,7 @@ public class MainMenu extends Aspect {
     
     protected void updateObjects(){
         super.updateObjects();
+        angle = (angle == 360) ? 0 : angle + 1;
     }
     
 }

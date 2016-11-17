@@ -40,6 +40,10 @@ public class BulletBallSimulator {
         bulletballsimulator.Globals.menu = new MainMenu(new ArrayList<>(), menuButtons);
         Globals.mainFrame = new Frame("BulletBall Simulator", bulletballsimulator.Globals.menu);
         Globals.mainFrame.setup();
+        Globals.mainFrame.addMouseListener(menuButtons.get(0));
+        Globals.mainFrame.addMouseListener(menuButtons.get(1));
+        Globals.mainFrame.addMouseMotionListener(menuButtons.get(0));
+        Globals.mainFrame.addMouseMotionListener(menuButtons.get(1));
         Globals.mainFrame.start();
     }
     
