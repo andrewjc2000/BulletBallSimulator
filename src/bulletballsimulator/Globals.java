@@ -2,7 +2,9 @@
 package bulletballsimulator;
 
 import bulletballsimulator.menu.MainMenu;
+import graphics.util.Image;
 
 public class Globals {
     public static MainMenu menu;
+    public static Image menuBG;
 }

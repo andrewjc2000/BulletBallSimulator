@@ -6,6 +6,7 @@ import container.Aspect;
 import container.SubAspect;
 import graphics.util.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,8 +17,8 @@ import main.Globals;
 
 public class MainMenu extends Aspect {
     
-    ArrayList<graphics.util.Button> buttons;
-    BufferedImage mahpoint;
+    private final ArrayList<graphics.util.Button> buttons;
+    private final Font font;
     
     public MainMenu(ArrayList<SubAspect> subAspects, ArrayList<graphics.util.Button> buttons) {
         super(subAspects);/*
@@ -28,16 +29,19 @@ public class MainMenu extends Aspect {
         }
         catch(IOException e){System.out.println("Error: Could ");}*/
         this.buttons = buttons;
+        font = new Font("Monospaced", Font.BOLD, 74);
     }
     
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.blue);
-        g.fillRect(0,0, Globals.contentWidth, Globals.contentHeight);
+        bulletballsimulator.Globals.menuBG.draw(g);
         for(Button b: buttons){
             b.draw(g);
         }
+        g.setColor(Color.yellow);
+        g.setFont(font);
+        g.drawString("BulletBall Simulator", 50, 150);
     }
     
     protected void updateObjects(){
