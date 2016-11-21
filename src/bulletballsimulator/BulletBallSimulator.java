@@ -1,6 +1,7 @@
 //File created by Andrew Chafos on 11/16/16 @ 12:50 PM
 package bulletballsimulator;
 
+import bulletballsimulator.game.MainGame;
 import bulletballsimulator.menu.MainMenu;
 import container.*;
 import graphics.util.*;
@@ -38,6 +39,7 @@ public class BulletBallSimulator {
             )
         );
         bulletballsimulator.Globals.menu = new MainMenu(new ArrayList<>(), menuButtons);
+        bulletballsimulator.Globals.game = new MainGame();
         Globals.mainFrame = new Frame("BulletBall Simulator", bulletballsimulator.Globals.menu);
         Globals.mainFrame.setup();
         Globals.mainFrame.addMouseListener(menuButtons.get(0));
@@ -45,6 +47,8 @@ public class BulletBallSimulator {
         Globals.mainFrame.addMouseMotionListener(menuButtons.get(0));
         Globals.mainFrame.addMouseMotionListener(menuButtons.get(1));
         Globals.mainFrame.start();
+        while(!bulletballsimulator.Globals.menu.getTerminating()){}
+        Globals.mainFrame.contain.switchAspect(bulletballsimulator.Globals.game);
     }
     
 }

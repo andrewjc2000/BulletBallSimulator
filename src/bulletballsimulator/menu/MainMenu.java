@@ -20,6 +20,11 @@ public class MainMenu extends Aspect {
     public final ArrayList<graphics.util.Button> buttons;
     private final Font font;
     private double angle;
+    private boolean terminate;
+    
+    public boolean getTerminating(){
+        return terminate;
+    }
     
     public MainMenu(ArrayList<SubAspect> subAspects, ArrayList<graphics.util.Button> buttons) {
         super(subAspects);/*
@@ -32,6 +37,7 @@ public class MainMenu extends Aspect {
         this.buttons = buttons;
         font = new Font("Monospaced", Font.BOLD, 74);
         angle = 0;
+        terminate = false;
     }
     
     @Override
@@ -51,6 +57,12 @@ public class MainMenu extends Aspect {
     protected void updateObjects(){
         super.updateObjects();
         angle = (angle == 360) ? 0 : angle + 1;
+        if(buttons.get(0).getActive()){
+            terminate = true;
+        }
+        else if(buttons.get(1).getActive()){
+            System.exit(0);
+        }
     }
     
 }
