@@ -19,14 +19,19 @@ public class BulletBallSimulator {
 
     public static void main(String[] args) {
         BufferedImage background = null;
+        BufferedImage marcFloor = null;
         try{
         URL resource1 = main.Launcher.class.getClassLoader()
                 .getResource("bulletballsimulator/resources/background.jpg");
         background = ImageIO.read(resource1);
+        URL resource2 = main.Launcher.class.getClassLoader()
+                .getResource("bulletballsimulator/resources/MarcGriffinFloor.jpg");
+        marcFloor = ImageIO.read(resource2);
         }
         catch(IOException e){System.out.println("Error: Could not locate image file.");}
         
         bulletballsimulator.Globals.menuBG = new graphics.util.Image(background, 1000, 650, 0, 0);
+        bulletballsimulator.Globals.gameFloor = new graphics.util.Image(marcFloor, 1000, 650, 0, 0);
         
         ArrayList<graphics.util.Button> menuButtons = new ArrayList<>();
         menuButtons.add(
