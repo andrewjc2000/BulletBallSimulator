@@ -6,6 +6,7 @@ import bulletballsimulator.menu.MainMenu;
 import container.*;
 import graphics.util.*;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -47,8 +48,14 @@ public class BulletBallSimulator {
         Globals.mainFrame.addMouseMotionListener(menuButtons.get(0));
         Globals.mainFrame.addMouseMotionListener(menuButtons.get(1));
         Globals.mainFrame.start();
-        while(!bulletballsimulator.Globals.menu.getTerminating()){}
+        while(!bulletballsimulator.Globals.menu.getTerminating()){System.out.print("");}
+        System.out.println("Switching");
+        Globals.mainFrame.removeMouseListener(menuButtons.get(0));
+        Globals.mainFrame.removeMouseListener(menuButtons.get(1));
+        Globals.mainFrame.removeMouseMotionListener(menuButtons.get(0));
+        Globals.mainFrame.removeMouseMotionListener(menuButtons.get(1));
         Globals.mainFrame.contain.switchAspect(bulletballsimulator.Globals.game);
+        Globals.mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
     
 }

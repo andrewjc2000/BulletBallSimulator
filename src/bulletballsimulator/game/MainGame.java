@@ -10,15 +10,25 @@ import java.util.ArrayList;
 
 public class MainGame extends Aspect {
     
+    final Color tableColor;
+    
     public MainGame() {
         super(new ArrayList<>());
+        tableColor = new Color(167,128,95);
     }
     
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.green);
-        g.fillRect(0, 0, 1000, 650);
+        g.setColor(Color.black);
+        g.fillRect(0,0,1000,650);
+        //table color == (167,128,95)
+        g.setColor(tableColor);
+        g.fillOval(175, 0, 650, 650);
+    }
+    
+    protected void updateObjects(){
+        super.updateObjects();
     }
     
 }

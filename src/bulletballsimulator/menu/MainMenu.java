@@ -23,7 +23,7 @@ public class MainMenu extends Aspect {
     private boolean terminate;
     
     public boolean getTerminating(){
-        return terminate;
+        return this.terminate;
     }
     
     public MainMenu(ArrayList<SubAspect> subAspects, ArrayList<graphics.util.Button> buttons) {
@@ -37,7 +37,7 @@ public class MainMenu extends Aspect {
         this.buttons = buttons;
         font = new Font("Monospaced", Font.BOLD, 74);
         angle = 0;
-        terminate = false;
+        this.terminate = false;
     }
     
     @Override
@@ -57,8 +57,9 @@ public class MainMenu extends Aspect {
     protected void updateObjects(){
         super.updateObjects();
         angle = (angle == 360) ? 0 : angle + 1;
-        if(buttons.get(0).getActive()){
-            terminate = true;
+        if(buttons.get(0).getActive() && !terminate){
+            this.terminate = true;
+            System.out.println("A-Switching");
         }
         else if(buttons.get(1).getActive()){
             System.exit(0);
