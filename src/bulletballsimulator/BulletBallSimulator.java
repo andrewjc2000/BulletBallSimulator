@@ -54,7 +54,6 @@ public class BulletBallSimulator {
         Globals.mainFrame.addMouseMotionListener(menuButtons.get(1));
         Globals.mainFrame.start();
         while(!bulletballsimulator.Globals.menu.getTerminating()){System.out.print("");}
-        System.out.println("Switching");
         Globals.mainFrame.removeMouseListener(menuButtons.get(0));
         Globals.mainFrame.removeMouseListener(menuButtons.get(1));
         Globals.mainFrame.removeMouseMotionListener(menuButtons.get(0));

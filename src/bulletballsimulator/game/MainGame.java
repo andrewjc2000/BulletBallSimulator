@@ -21,6 +21,10 @@ public class MainGame extends Aspect {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+        drawFloorAndTable(g);
+    }
+    
+    private void drawFloorAndTable(Graphics g){
         bulletballsimulator.Globals.gameFloor.draw(g);
         //table color == (167,128,95)
         
@@ -40,7 +44,11 @@ public class MainGame extends Aspect {
         g.drawLine(180, 375, 280, 375);
         g.drawLine(720, 275, 820, 275);
         g.drawLine(720, 375, 820, 375);
-
+        for(int i = 0;i < 10;i++){
+            g.setColor(Color.yellow);
+            g.drawArc(175 + i, 0, 650, 650, 130, 90);
+            g.drawArc(175 - i, 0, 650, 650, 50, -90);
+        }
     }
     
     protected void updateObjects(){

@@ -59,7 +59,6 @@ public class MainMenu extends Aspect {
         angle = (angle == 360) ? 0 : angle + 1;
         if(buttons.get(0).getActive() && !terminate){
             this.terminate = true;
-            System.out.println("A-Switching");
         }
         else if(buttons.get(1).getActive()){
             System.exit(0);
