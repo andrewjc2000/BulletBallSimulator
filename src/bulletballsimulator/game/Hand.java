@@ -49,23 +49,79 @@ public class Hand implements MouseMotionListener {
         if(cX + 20 >= currentX - 50 && cX - 20 <= currentX + 50){
             if(cY + 20 >= currentY && cY - 20 <= currentY + 20){
                 int changeC[] = {0,0};
-                if(
-                    (cY > currentY && cX > currentX - 50) ||
-                    (cY > currentY && cX < currentX + 50)
-                ){
-                changeC[0] = (cX < currentX) ? 
-                    (currentX - 50 - (cX + 20)) : 
-                    (currentX + 50 - (cX - 20));
-                changeC[1] = (cY < currentY) ? 
-                    (currentY - 10 - (cY + 20)) : 
-                    (currentY + 10 - (cY - 20));
+                //if the ball is exactly at the corners
+                if(cX == cY - 60 && cY == currentY - 10){
+                    changeC[0] = -1;
+                    changeC[1] = -1;
+                    return changeC;
                 }
-                if(changeC[0] == 0){
-                    changeC[0] = (cX < currentX) ? -1 : 1;
+                if(cX == cY - 60 && cY == currentY + 30){
+                    changeC[0] = -1;
+                    changeC[1] = 1;
+                    return changeC;
                 }
-                if(changeC[1] == 0){
-                    changeC[1] = (cY < currentY) ? -1 : 1;
+                if(cX == cY + 60 && cY == currentY - 10){
+                    changeC[0] = 1;
+                    changeC[1] = -1;
+                    return changeC;
                 }
+                if(cX == cY - 60 && cY == currentY + 30){
+                    changeC[0] = 1;
+                    changeC[1] = 1;
+                    return changeC;
+                }
+                //everything else
+                
+                if(cY <= currentY){
+                    if(cX >= currentX - 50 && cX <= currentX + 50){
+                        changeC[1] = currentY - (cY + 10);
+                        if(changeC[1] == 0){
+                            changeC[1] = -1;
+                            return changeC;
+                        }
+                    }
+                    else if(cX < currentX - 50){
+                        changeC[0] = currentX - 50 - (cX + 10);
+                        if(changeC[0] == 0){
+                            changeC[0] = -1;
+                            return changeC;
+                        }
+                    }
+                    else if(cX > currentX + 50){
+                        changeC[0] = currentX + 50 - (cX + 10);
+                        if(changeC[0] == 0){
+                            changeC[0] = 1;
+                            return changeC;
+                        }
+                    }
+                }
+                else{
+                    if(cX >= currentX - 50 && cX <= currentX + 50){
+                        changeC[1] = currentY + 10 - cY;
+                        if(changeC[1] == 0){
+                            changeC[1] = 1;
+                            return changeC;
+                        }
+                    }
+                    else if(cX < currentX - 50){
+                        changeC[0] = currentX - 50 - (cX + 10);
+                        if(changeC[0] == 0){
+                            changeC[0] = -1;
+                            return changeC;
+                        }
+                    }
+                    else if(cX > currentX + 50){
+                        changeC[0] = currentX + 50 - (cX + 10);
+                        if(changeC[0] == 0){
+                            changeC[0] = 1;
+                            return changeC;
+                        }
+                    }
+                }
+                
+                changeC[0] *= -1;
+                changeC[1] *= -1;
+                System.out.println(changeC[0] + " " + changeC[1]);
                 return changeC;
             }
         }
@@ -88,16 +144,10 @@ public class Hand implements MouseMotionListener {
     }
     
     public double getVelocityX(){
-        if(handPositions.size() < 2){
+        if(handPositions.size() <= 2){
             return 0;
         }
-        if(handPositions.size() == 2){
-            if((System.currentTimeMillis() - handPositions.get(1)[2]) < 1000){
-                return 1000 * (handPositions.get(1)[0] - handPositions.get(0)[0])
-                    / (handPositions.get(1)[2] - handPositions.get(0)[2]);
-            }
-        }
-        else if(handPositions.size() >= 3){
+        else {
             if((System.currentTimeMillis() - handPositions.get(handPositions.size() - 1)[2]) < 1000){
                 return 1000 * (handPositions.get(handPositions.size() - 1)[0] - 
                         handPositions.get(handPositions.size() - 3)[0])
@@ -109,16 +159,10 @@ public class Hand implements MouseMotionListener {
     }
     
     public double getVelocityY(){
-        if(handPositions.size() < 2){
+        if(handPositions.size() <= 2){
             return 0;
         }
-        if(handPositions.size() == 2){
-            if((System.currentTimeMillis() - handPositions.get(1)[2]) < 1000){
-                return 1000 * (handPositions.get(1)[1] - handPositions.get(0)[1]) * 1.0
-                    / (handPositions.get(1)[2] - handPositions.get(0)[2]);
-            }
-        }
-        else if(handPositions.size() >= 3){
+        else {
             if((System.currentTimeMillis() - handPositions.get(handPositions.size() - 1)[2]) < 1000){
                 return 1000 * (handPositions.get(handPositions.size() - 1)[1] - 
                         handPositions.get(handPositions.size() - 3)[1]) * 1.0

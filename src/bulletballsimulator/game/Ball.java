@@ -30,7 +30,7 @@ public class Ball {
         int newX = (int)Math.round(x + (velocityX * time));
         int newY = (int)Math.round(y + (velocityY * time));
         int[] changeC = h.containsCoords((int)Math.round(x), (int)Math.round(y), newX, newY);
-        if(changeC[0] != 0 && changeC[1] != 0){
+        if(changeC[0] != 0 || changeC[1] != 0){
             velocityX = 2 * h.getVelocityX();
             velocityY = 2 * h.getVelocityY();
             x += changeC[0];
