@@ -121,7 +121,7 @@ public class Hand implements MouseMotionListener {
                 
                 changeC[0] *= -1;
                 changeC[1] *= -1;
-                System.out.println(changeC[0] + " " + changeC[1]);
+                //System.out.println(changeC[0] + " " + changeC[1]);
                 return changeC;
             }
         }
@@ -149,6 +149,10 @@ public class Hand implements MouseMotionListener {
         }
         else {
             if((System.currentTimeMillis() - handPositions.get(handPositions.size() - 1)[2]) < 1000){
+                if((handPositions.get(handPositions.size() - 1)[2] - 
+                        handPositions.get(handPositions.size() - 3)[2]) == 0){
+                    return 0;
+                }
                 return 1000 * (handPositions.get(handPositions.size() - 1)[0] - 
                         handPositions.get(handPositions.size() - 3)[0])
                     / (handPositions.get(handPositions.size() - 1)[2] - 
@@ -164,6 +168,10 @@ public class Hand implements MouseMotionListener {
         }
         else {
             if((System.currentTimeMillis() - handPositions.get(handPositions.size() - 1)[2]) < 1000){
+                if((handPositions.get(handPositions.size() - 1)[2] - 
+                        handPositions.get(handPositions.size() - 3)[2]) == 0){
+                    return 0;
+                }
                 return 1000 * (handPositions.get(handPositions.size() - 1)[1] - 
                         handPositions.get(handPositions.size() - 3)[1]) * 1.0
                     / (handPositions.get(handPositions.size() - 1)[2] - 

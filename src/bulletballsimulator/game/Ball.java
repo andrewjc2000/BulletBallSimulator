@@ -36,12 +36,25 @@ public class Ball {
             x += changeC[0];
             y += changeC[1];
         }
-        x += (velocityX * time);
-        y += (velocityY * time);
+        else{
+            x += (velocityX * time);
+            y += (velocityY * time);
+        }
     }
     
     public void draw(Graphics g){
         g.setColor(Color.red);
         g.fillOval((int)Math.round(x - 20), (int)Math.round(y - 20), 40, 40);
+    }
+    
+    public boolean onWall(){
+        
+        for(double i = 0;i <= 1;i+=0.1){
+            double ballx1 = x + (10 * Math.cos(Math.PI * i));
+            double ballx2 = x - (10 * Math.cos(Math.PI * i));
+            double bally = y + (10 * Math.sin(Math.PI * i));
+        }
+        
+        return false;
     }
 }
