@@ -10,18 +10,24 @@ import java.util.ArrayList;
 
 public class MainGame extends Aspect {
     
-    final Color tableColor, tableOutline;
+    private final Color tableColor, tableOutline;
+    public final Ball b;
+    public final Hand h;
     
     public MainGame() {
         super(new ArrayList<>());
         tableColor = new Color(167,128,95);
         tableOutline = new Color(139,69,19);
+        b = new Ball(500, 325, 0, -65);
+        h = b.h;
     }
     
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         drawFloorAndTable(g);
+        b.draw(g);
+        h.draw(g);
     }
     
     private void drawFloorAndTable(Graphics g){
@@ -53,6 +59,7 @@ public class MainGame extends Aspect {
     
     protected void updateObjects(){
         super.updateObjects();
+        b.move(.005);//updater going every 5 milliseconds, so time is .005
     }
     
 }

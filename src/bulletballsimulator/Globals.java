@@ -6,6 +6,7 @@ import bulletballsimulator.menu.MainMenu;
 import graphics.util.Image;
 
 public class Globals {
+    public static long initTime;
     public static MainMenu menu;
     public static MainGame game;
     public static Image menuBG, gameFloor;

@@ -58,6 +58,8 @@ public class BulletBallSimulator {
         Globals.mainFrame.removeMouseListener(menuButtons.get(1));
         Globals.mainFrame.removeMouseMotionListener(menuButtons.get(0));
         Globals.mainFrame.removeMouseMotionListener(menuButtons.get(1));
+        bulletballsimulator.Globals.initTime = System.currentTimeMillis();
+        Globals.mainFrame.addMouseMotionListener(bulletballsimulator.Globals.game.h);
         Globals.mainFrame.contain.switchAspect(bulletballsimulator.Globals.game);
         Globals.mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
