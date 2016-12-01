@@ -5,8 +5,10 @@ import container.Aspect;
 import graphics.util.Button;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
 //import container.SubAspect;
 import java.util.ArrayList;
+import main.Globals;
 
 public class MainGame extends Aspect {
     
@@ -59,6 +61,10 @@ public class MainGame extends Aspect {
     
     protected void updateObjects(){
         super.updateObjects();
+        h.updatePos(
+            (int)Math.round(MouseInfo.getPointerInfo().getLocation().getX()) - Globals.mainFrame.getX(), 
+            (int)Math.round(MouseInfo.getPointerInfo().getLocation().getY() - 25) - Globals.mainFrame.getY()
+        );
         b.move(.005);//updater going every 5 milliseconds, so time is .005
     }
     

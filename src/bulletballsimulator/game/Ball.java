@@ -31,8 +31,8 @@ public class Ball {
         int newY = (int)Math.round(y + (velocityY * time));
         int[] changeC = h.containsCoords((int)Math.round(x), (int)Math.round(y), newX, newY);
         if(changeC[0] != 0 || changeC[1] != 0){
-            velocityX = 2 * h.getVelocityX();
-            velocityY = 2 * h.getVelocityY();
+            velocityX = h.getVelocityX();
+            velocityY = h.getVelocityY();
             x += changeC[0];
             y += changeC[1];
         }
@@ -49,12 +49,48 @@ public class Ball {
     
     public boolean onWall(){
         
-        for(double i = 0;i <= 1;i+=0.1){
-            double ballx1 = x + (10 * Math.cos(Math.PI * i));
-            double ballx2 = x - (10 * Math.cos(Math.PI * i));
-            double bally = y + (10 * Math.sin(Math.PI * i));
+        /*
+            1] g.drawArc(185, 0, 650, 650, 130, 90);
+            2] g.drawArc(165, 0, 650, 650, 50, -90);
+            Center 1: 510, 325
+            Center 2: 490, 325
+            Radius: 325
+        */
+        if(x > 500){
+            //arc 2
+            if(y > 325){
+                for(int i = 0;i <= 15;i++){
+                    //5 degrees to -40 degrees
+                    double arcX = 490 + Math.cos((Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
+                    double arcY = 325 + Math.sin((Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
+                }
+            }
+            else{
+            
+            }
+        }
+        else{
+            //arc 1
+            if(y > 325){
+            
+            }
+            else{
+            
+            }
         }
         
+        
         return false;
+    }
+    
+    private boolean inBall(double x, double y){
+        double val1 = Math.pow((y - this.y), 2);
+        double val2 = Math.pow((x - this.x), 2);
+        if(val1 + val2 <= 10){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

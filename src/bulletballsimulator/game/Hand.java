@@ -23,7 +23,7 @@ public class Hand implements MouseMotionListener {
     public void updatePos(int newX, int newY){
         long tempArr[] = {newX, newY, System.currentTimeMillis()};
         handPositions.add(tempArr);
-        if(handPositions.size() >= 50){
+        if(handPositions.size() >= 75){
             handPositions.remove(0);
         }
         currentX = newX;
@@ -74,7 +74,7 @@ public class Hand implements MouseMotionListener {
                 
                 if(cY <= currentY){
                     if(cX >= currentX - 50 && cX <= currentX + 50){
-                        changeC[1] = currentY - (cY + 10);
+                        changeC[1] = 10 + currentY - (cY);
                         if(changeC[1] == 0){
                             changeC[1] = -1;
                             return changeC;
@@ -97,7 +97,7 @@ public class Hand implements MouseMotionListener {
                 }
                 else{
                     if(cX >= currentX - 50 && cX <= currentX + 50){
-                        changeC[1] = currentY + 10 - cY;
+                        changeC[1] = 10 + currentY - (cY);
                         if(changeC[1] == 0){
                             changeC[1] = 1;
                             return changeC;
