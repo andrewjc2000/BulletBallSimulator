@@ -21,13 +21,15 @@ public class Hand implements MouseMotionListener {
     }
     
     public void updatePos(int newX, int newY){
-        long tempArr[] = {newX, newY, System.currentTimeMillis()};
-        handPositions.add(tempArr);
-        if(handPositions.size() >= 75){
-            handPositions.remove(0);
-        }
-        currentX = newX;
-        currentY = newY;
+        //if(newY > 325){
+            long tempArr[] = {newX, newY, System.currentTimeMillis()};
+            handPositions.add(tempArr);
+            if(handPositions.size() >= 75){
+                handPositions.remove(0);
+            }
+            currentX = newX;
+            currentY = newY;
+        //}
     }
     
     public void draw(Graphics g){

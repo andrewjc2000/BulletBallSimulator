@@ -30,16 +30,33 @@ public class Ball {
         int newX = (int)Math.round(x + (velocityX * time));
         int newY = (int)Math.round(y + (velocityY * time));
         int[] changeC = h.containsCoords((int)Math.round(x), (int)Math.round(y), newX, newY);
-        if(changeC[0] != 0 || changeC[1] != 0){
-            velocityX = 2 * h.getVelocityX();
-            velocityY = 2 * h.getVelocityY();
+        if(onWall()){
+            velocityX *= -1;
+            velocityY *= -1;
+            x += 3 * (velocityX * time);
+            y += 3 * (velocityY * time);
+        }
+        else if(x <= 0 || x >= 1000 || y <= 0 || y >= 650){
+            velocityX *= -1;
+            velocityY *= -1;
+            if(x <= 0){
+                x = 1;
+            }
+            if(x >= 1000){
+                x = 999;
+            }
+            if(y <= 0){
+                y = 1;
+            }
+            if(y >= 650){
+                y = 649;
+            }
+        }
+        else if(changeC[0] != 0 || changeC[1] != 0){
+            velocityX = 0.3 * h.getVelocityX();
+            velocityY = 0.3 * h.getVelocityY();
             x += changeC[0];
             y += changeC[1];
-        }
-        else if(onWall()){
-            velocityX *= -1;
-            x += (velocityX * time);
-            y += (velocityY * time);
         }
         else{
             x += (velocityX * time);
@@ -50,6 +67,45 @@ public class Ball {
     public void draw(Graphics g){
         g.setColor(Color.red);
         g.fillOval((int)Math.round(x - 20), (int)Math.round(y - 20), 40, 40);
+        
+        if(x > 500){
+            //arc 2
+            if(y < 343){
+                for(int i = 0;i <= 30;i++){
+                    //5 degrees to -40 degrees
+                    double arcX = 490 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    g.drawRect((int) Math.round(arcX), (int)Math.round(arcY), 5, 5);
+                }
+            }
+            else{
+                for(int i = 0;i <= 30;i++){
+                    //5 degrees to 50 degrees
+                    double arcX = 490 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
+                    g.drawRect((int) Math.round(arcX), (int)Math.round(arcY), 5, 5);
+                }
+            }
+        }
+        else{
+            //arc 1
+            if(y < 343){
+                for(int i = 0;i <= 30;i++){
+                    //175 degrees to 220 degrees
+                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
+                    g.drawRect((int) Math.round(arcX), (int)Math.round(arcY), 5, 5);
+                }
+            }
+            else{
+                for(int i = 0;i <= 30;i++){
+                    //175 degrees to 130 degrees
+                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    g.drawRect((int) Math.round(arcX), (int)Math.round(arcY), 5, 5);
+                }
+            }
+        }
     }
     
     public boolean onWall(){
@@ -63,21 +119,21 @@ public class Ball {
         */
         if(x > 500){
             //arc 2
-            if(y > 325){
-                for(int i = 0;i <= 15;i++){
+            if(y < 343){
+                for(int i = 0;i <= 30;i++){
                     //5 degrees to -40 degrees
-                    double arcX = 490 + 325 * Math.cos((Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
+                    double arcX = 470 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
                     if(inBall(arcX, arcY)){
                         return true;
                     }
                 }
             }
             else{
-                for(int i = 0;i <= 15;i++){
+                for(int i = 0;i <= 30;i++){
                     //5 degrees to 50 degrees
-                    double arcX = 490 + 325 * Math.cos((Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) + ((i / 15.0) * (Math.PI / 4)));
+                    double arcX = 470 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
                     if(inBall(arcX, arcY)){
                         return true;
                     }
@@ -86,21 +142,21 @@ public class Ball {
         }
         else{
             //arc 1
-            if(y > 325){
-                for(int i = 0;i <= 15;i++){
+            if(y < 343){
+                for(int i = 0;i <= 30;i++){
                     //175 degrees to 220 degrees
-                    double arcX = 490 + 325 * Math.cos((35 * Math.PI / 36) + ((i / 15.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) + ((i / 15.0) * (Math.PI / 4)));
+                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
                     if(inBall(arcX, arcY)){
                         return true;
                     }
                 }
             }
             else{
-                for(int i = 0;i <= 15;i++){
+                for(int i = 0;i <= 30;i++){
                     //175 degrees to 130 degrees
-                    double arcX = 490 + 325 * Math.cos((35 * Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) - ((i / 15.0) * (Math.PI / 4)));
+                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
+                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
                     if(inBall(arcX, arcY)){
                         return true;
                     }
@@ -115,6 +171,6 @@ public class Ball {
     private boolean inBall(double x, double y){
         double val1 = Math.pow((y - this.y), 2);
         double val2 = Math.pow((x - this.x), 2);
-        return val1 + val2 <= 10;
+        return val1 + val2 <= 20;
     }
 }
