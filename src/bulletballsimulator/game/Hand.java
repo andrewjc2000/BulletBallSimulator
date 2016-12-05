@@ -48,7 +48,9 @@ public class Hand implements MouseMotionListener {
     }
     
     public int[] containsCoords(int cX, int cY, int newX, int newY){
-        if(cX + 20 >= currentX - 50 && cX - 20 <= currentX + 50){
+        double val1 = Math.pow((currentY - cY), 2);
+        double val2 = Math.pow((currentX - cX), 2);
+        if(cX + 20 >= currentX - 50 && cX - 20 <= currentX + 50 && !(val1 + val2 <= 100)){
             if(cY + 20 >= currentY && cY - 20 <= currentY + 20){
                 int changeC[] = {0,0};
                 //if the ball is exactly at the corners
