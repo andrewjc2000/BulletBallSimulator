@@ -82,41 +82,20 @@ public class Ball {
         g.fillRect((int)Math.round(x + 20 * Math.cos(theta)), (int)Math.round(y + 20 * Math.sin(theta)), 2, 2);
         
         if(x > 500){
-            //arc 2
-            if(y < 343){
-                for(int i = 0;i <= 30;i++){
-                    //5 degrees to -40 degrees
-                    double arcX = 470 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    g.fillRect((int) Math.round(arcX), (int)Math.round(arcY), 3, 3);
-                }
-            }
-            else{
-                for(int i = 0;i <= 30;i++){
-                    //5 degrees to 50 degrees
-                    double arcX = 470 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
-                    g.fillRect((int) Math.round(arcX), (int)Math.round(arcY), 3, 3);
-                }
+            for(int i = 0;i <= 60;i++){
+                    //175 degrees to 220 degrees
+                double arcX = 490 + 325 * Math.cos((-10 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));//14.5 * pi / 48 + (pi / 4)
+                double arcY = 325 + 325 * Math.sin((-10 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));
+                g.fillRect((int) Math.round(arcX), (int)Math.round(arcY), 3, 3);
             }
         }
         else{
             //arc 1
-            if(y < 343){
-                for(int i = 0;i <= 60;i++){
+            for(int i = 0;i <= 60;i++){
                     //175 degrees to 220 degrees
-                    double arcX = 510 + 325 * Math.cos((28 * Math.PI / 36) + ((i / 60.0) * (0.50208333333 * Math.PI)));//14.5 * pi / 48 + (pi / 4)
-                    double arcY = 325 + 325 * Math.sin((28 * Math.PI / 36) + ((i / 60.0) * (0.50208333333 * Math.PI)));
+                    double arcX = 510 + 325 * Math.cos((28 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));//14.5 * pi / 48 + (pi / 4)
+                    double arcY = 325 + 325 * Math.sin((28 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));
                     g.fillRect((int) Math.round(arcX), (int)Math.round(arcY), 3, 3);
-                }
-            }
-            else{
-                for(int i = 0;i <= 30;i++){
-                    //175 degrees to 130 degrees
-                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    g.fillRect((int) Math.round(arcX), (int)Math.round(arcY), 3, 3);
-                }
             }
         }
     }
@@ -131,48 +110,23 @@ public class Ball {
             Radius: 325
         */
         if(x > 500){
-            //arc 2
-            if(y < 343){
-                for(int i = 0;i <= 30;i++){
-                    //5 degrees to -40 degrees
-                    double arcX = 470 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    if(inBall(arcX, arcY)){
-                        return true;
-                    }
-                }
-            }
-            else{
-                for(int i = 0;i <= 30;i++){
-                    //5 degrees to 50 degrees
-                    double arcX = 470 + 325 * Math.cos((Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
-                    if(inBall(arcX, arcY)){
-                        return true;
-                    }
+            for(int i = 0;i <= 60;i++){
+                    //175 degrees to 220 degrees
+                double arcX = 490 + 325 * Math.cos((-10 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));//14.5 * pi / 48 + (pi / 4)
+                double arcY = 325 + 325 * Math.sin((-10 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));
+                if(inBall(arcX, arcY)){
+                    return true;
                 }
             }
         }
         else{
             //arc 1
-            if(y < 343){
-                for(int i = 0;i <= 30;i++){
+            for(int i = 0;i <= 60;i++){
                     //175 degrees to 220 degrees
-                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) + ((i / 30.0) * (Math.PI / 4)));
-                    if(inBall(arcX, arcY)){
-                        return true;
-                    }
-                }
-            }
-            else{
-                for(int i = 0;i <= 30;i++){
-                    //175 degrees to 130 degrees
-                    double arcX = 510 + 325 * Math.cos((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    double arcY = 325 + 325 * Math.sin((35 * Math.PI / 36) - ((i / 30.0) * (Math.PI / 4)));
-                    if(inBall(arcX, arcY)){
-                        return true;
-                    }
+                double arcX = 510 + 325 * Math.cos((28 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));//14.5 * pi / 48 + (pi / 4)
+                double arcY = 325 + 325 * Math.sin((28 * Math.PI / 36) + ((i / 60.0) * (0.5 * Math.PI)));
+                if(inBall(arcX, arcY)){
+                    return true;
                 }
             }
         }
